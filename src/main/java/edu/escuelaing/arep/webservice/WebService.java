@@ -23,9 +23,13 @@ public class WebService {
 
         post("/services", (request, response) -> {
             response.status(200);
-            JsonObject jsonObject = new JsonParser().parse(request.body()).getAsJsonObject();
             response.type("application/json");
-            return Service.makeOperations(jsonObject.get("value").getAsJsonArray());
+            String[] data = request.body().split(" ");
+            JsonArray array =  new JsonArray();
+            for (String e: data){
+               array.add( Double.parseDouble(e));
+            }
+            return Service.makeOperations(array);
         });
 
         post("/results", (request, response) -> {

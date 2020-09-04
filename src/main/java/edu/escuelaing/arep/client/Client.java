@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-        URL url =new URL("https://rocky-ocean-55000.herokuapp.com/results");
+        URL url =new URL("https://rocky-ocean-55000.herokuapp.com/services");
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("POST");
         urlConnection.setDoOutput(true);
