@@ -16,10 +16,10 @@ public class Client {
         urlConnection.setRequestMethod("POST");
         urlConnection.setDoOutput(true);
         String numbers = "1 2 3 4 5 5.3 78 9";
-        BufferedReader inClient = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8));
         OutputStream outToService = urlConnection.getOutputStream();
         byte[] file = numbers.getBytes(StandardCharsets.UTF_8);
         outToService.write(file, 0, file.length);
+        BufferedReader inClient = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8));
         StringBuilder response = new StringBuilder();
         String responseLine =  null;
         while((responseLine = inClient.readLine()) != null){
