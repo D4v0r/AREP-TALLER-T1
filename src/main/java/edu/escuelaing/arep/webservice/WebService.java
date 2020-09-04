@@ -1,4 +1,5 @@
 package edu.escuelaing.arep.webservice;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import edu.escuelaing.arep.services.Service;
@@ -8,6 +9,7 @@ import spark.Response;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static spark.Spark.*;
 
@@ -17,6 +19,13 @@ public class WebService {
         get("/", (req, res) -> {
             String page = FileUtils.readFileToString(new File("src/main/resources/index.html"), StandardCharsets.UTF_8);
             return page;
+        });
+
+        post("/services", (request, response) -> {
+            response.status(200);
+            JsonObject jsonObject = new JsonParser().parse(request.body()).getAsJsonObject();
+            response.type("application/json");
+            return Service.makeOperations(jsonObject.get("value").getAsJsonArray());
         });
 
         post("/results", (request, response) -> {
