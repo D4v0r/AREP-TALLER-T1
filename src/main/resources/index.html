@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function doRequest() {
+            axios.post('https://mean-deviation.herokuapp.com/results', {
+                value: document.getElementById("list").value.split(" ").map(Number)
+            })
+        }
+
+    </script>
+</head>
+<body>
+
+<h2>Parcial 1 Tercio </h2>
+
+List of numbers:<br>
+<input type="text" id="list">
+<br>
+<input type="submit" value="Submit" onclick="doRequest()">
+<br><br>
+Please insert the numbers with blank spaces.
+<br><br>
+<p id="result"></p>
+</body>
+</html>
